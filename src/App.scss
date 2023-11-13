@@ -1,0 +1,88 @@
+@import '../public/base.scss';
+
+.App {
+  text-align: center;
+  background-color: #070707;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+main {
+  margin-right: calc(1rem + 36px);
+}
+
+.main-container {
+  // margin-top: 2vh;
+  // margin-bottom: 2vh;
+  text-align: left;
+
+  .page {
+    height: 100vh;
+    padding: 2rem 2rem;
+  }
+}
+
+.page {
+  overflow: scroll;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.header-1 {
+font-family: 'Bungee Hairline';
+  color: $primary-red;
+  font-size: 3rem;
+  font-weight: 600;
+
+  margin-top: 0;
+  margin-bottom: .2rem;
+}
+.header-2 {
+  font-family: 'Bungee Hairline';
+  color: rgb(200,200,200);
+  font-size: 1.75rem;
+  font-weight: 600;
+  
+}
+
+.monospace {
+  font-family: monospace;
+}
+.primary-red-font {
+  color: $primary-red;
+}
+.secondary-red-font {
+  color: $secondary-red;
+}
+.white-font {
+  color: white;
+}
+.grey-font {
+  color: #939393;
+}
+
+input[type=text] {
+  background-color: transparent;
+  padding: 7px 10px;
+  display: inline-block;
+  border: none;
+  border-bottom: 1px solid $primary-red;
+  box-sizing: border-box;
+
+}
+input:focus {
+  outline: none;
+}
+
+::placeholder {
+  color: #363636;
+  opacity: 1;
+}
+
+@media only screen and (max-width: 500px) {
+  .main-container .page {
+    padding: .5rem;
+  }
+}

@@ -1,0 +1,94 @@
+@import '../../../public/base.scss';
+
+.Skills {
+    font-family: monospace;
+
+    .description {
+        ul {
+            list-style-type: none;
+            color: #b5b5b5 !important;
+
+            li::before {
+                content: '- ';
+                color: $secondary-red;
+            }
+        }
+    }
+
+    .header-1 {
+        margin: 0;
+    }
+
+    .header-2 {
+        color: white;
+        margin: 0;
+    }
+
+    .job, .school {
+        margin: 1.5em 1em;
+    }
+
+    .job-title, .school-name {
+        color: $primary-red;
+        font-size: 1.25rem;
+        margin: 0;
+    }
+
+    .company, .area-of-study {
+        color: #b5b5b5;
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    .description ul, .description p {
+        color: #939393;
+        margin: .5em;
+    }
+
+    .technical-skills, .education {
+        max-width: 600px;
+    }
+
+    .skills-header {
+        color: #b5b5b5;
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
+
+    .graph {
+        border-left: 2px solid grey;
+        margin-left: 10px;
+    }
+    .bar {
+        background-color: $primary-red;
+        height: 10px;
+        margin-right: 3px;
+    }
+    
+    .flex {
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .left-side {
+        display: inline-block;
+        width: 50%;
+
+        .experience, .education {
+            padding: 0 1vw;
+        }
+    }
+    .right-side {
+        vertical-align: top;
+        display: inline-block;
+        width: 50%;
+        
+        .technical-skills, .education {
+            margin: auto;
+            padding: 0 1vw;
+        }
+    }
+}
+
