@@ -1,19 +1,14 @@
 {
   "files": {
-    "main.css": "/gehrigrankin-portfolio/static/css/main.6b8b58a2.css",
-    "main.js": "/gehrigrankin-portfolio/static/js/main.f923501e.js",
-    "static/media/azcImage.png": "/gehrigrankin-portfolio/static/media/azcImage.49c1d17681de049fe033.png",
-    "static/media/Group-gen.png": "/gehrigrankin-portfolio/static/media/Group-gen.1c5585f565e1e0344088.png",
-    "static/media/Skelly.png": "/gehrigrankin-portfolio/static/media/Skelly.4a414e8dde27f3858b77.png",
-    "static/media/messenger-pic.PNG": "/gehrigrankin-portfolio/static/media/messenger-pic.3a93086781bf0213a50c.PNG",
-    "static/media/IIONS_login_logo.png": "/gehrigrankin-portfolio/static/media/IIONS_login_logo.e5a040e1d0d26bbe946b.png",
+    "main.css": "/gehrigrankin-portfolio/static/css/main.4c7853bc.css",
+    "main.js": "/gehrigrankin-portfolio/static/js/main.bbddb73f.js",
     "static/media/gehrigrankin.jpg": "/gehrigrankin-portfolio/static/media/gehrigrankin.0509d500c17e472a4200.jpg",
     "index.html": "/gehrigrankin-portfolio/index.html",
-    "main.6b8b58a2.css.map": "/gehrigrankin-portfolio/static/css/main.6b8b58a2.css.map",
-    "main.f923501e.js.map": "/gehrigrankin-portfolio/static/js/main.f923501e.js.map"
+    "main.4c7853bc.css.map": "/gehrigrankin-portfolio/static/css/main.4c7853bc.css.map",
+    "main.bbddb73f.js.map": "/gehrigrankin-portfolio/static/js/main.bbddb73f.js.map"
   },
   "entrypoints": [
-    "static/css/main.6b8b58a2.css",
-    "static/js/main.f923501e.js"
+    "static/css/main.4c7853bc.css",
+    "static/js/main.bbddb73f.js"
   ]
 }
