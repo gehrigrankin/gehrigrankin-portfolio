@@ -1,54 +1,42 @@
-import React from 'react';
-
-import { Navbar } from './components/Navbar';
+import React, { useEffect, useRef, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import { faUserAstronaut, faLayerGroup, faCode, faPaperPlane, faArrowRight, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { StarBackground } from './components/StarBackground';
-import { AboutMe } from './components/AboutMe';
-import { Skills } from './components/Skills';
-import { Projects } from './components/Projects';
-import ContactMe from './components/ContactMe/ContactMe';
-
+import portrait from './components/AboutMe/gehrigrankin.jpg';
 import './App.scss';
+import './cinematic.scss';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+const sections=[['home','Profile',faUserAstronaut],['work','Missions',faLayerGroup],['experience','Systems',faCode],['contact','Signal',faPaperPlane]];
+const projects=[
+ {title:'Chuck',code:'CK',type:'Agentic operating system',tech:'TypeScript · Claude · SQLite · Telegram',text:'A persistent Jarvis-style personal agent with real tools, durable memory, and approval tiers that keep risky actions under human control.',private:true},
+ {title:'Agenda',code:'AG',type:'Knowledge + task workspace',tech:'Next.js · Lexical · Neon · Drizzle',text:'A notes and agenda system combining first-class tasks, rich writing, folders, tags, and a focused daily planning surface.',href:'https://github.com/gehrigrankin/agenda-app',live:'https://agenda-app-orcin-nine.vercel.app'},
+ {title:'BetDesk',code:'BD',type:'AI sports research',tech:'Next.js · Prisma · Recharts · OpenAI',text:'A customizable NBA research dashboard that turns dozens of pre-bet searches into reusable, intelligent data workspaces.',href:'https://github.com/gehrigrankin/betting-dashboard'},
+ {title:'Untamed',code:'UT',type:'Mobile creature roguelite',tech:'Unity 6 · C# · iOS · Spatial systems',text:'An original one-thumb creature-collector with pooled horde combat, data-driven content, spatial targeting, haptics, and headless builds.',private:true},
+ {title:'Bandirector',code:'BN',type:'Connected musician workflow',tech:'Next.js · Supabase · Web Audio · MIDI',text:'A PWA for creating, learning, practicing, and jamming together—with live rooms, chord analysis, MIDI input, and interactive lessons.',href:'https://github.com/gehrigrankin/Bandirector',live:'https://bandirector.vercel.app'},
+ {title:'AI Caddy',code:'AI',type:'Native golf intelligence',tech:'Swift · AI · GPS · Sports analytics',text:'An AI-powered golf GPS companion with satellite mapping, voice shot tracking, club recommendations, and strokes-gained analysis.',href:'https://github.com/gehrigrankin/AICaddy'}
+];
+const jobs=[
+ ['2021—2023','Product Developer','Execute to Win','Modernized a legacy AngularJS platform, improved first-run UX, built React apps, and delivered data-rich D3 visualizations.'],
+ ['2018—2020','Lead Front-End Developer','Advanced Reimbursement Solutions','Became the first in-house developer and led the interface direction of a medical reimbursement automation platform.'],
+ ['2018','Bootcamp Teaching Assistant','Trilogy Education','Mentored new developers, reviewed assignments, and guided collaborative full-stack projects to launch.']
+];
 
-class App extends React.Component {
-  state = {
-    activeTab: 1
-  }
-
-  componentDidMount() {
-    window.onbeforeunload = (e) => {
-      window.scrollTo(0, 0);
-    };
-  }
-
-  setActiveTab = tab => {
-    window.scrollTo({
-      top: (tab * window.innerHeight) - window.innerHeight,
-      behavior: 'smooth'
-    });
-
-    this.setState({ activeTab: tab })
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <StarBackground />
-        <main>
-          <Navbar activeTab={this.state.activeTab} setActiveTab={this.setActiveTab} />
-
-          <div className="main-container">
-            <AboutMe />
-            <Skills />
-            <Projects />
-            <ContactMe />
-          </div>
-        </main>
-      </div>
-    );
-  }
-
+function App(){
+ const [active,setActive]=useState('home'); const [warping,setWarping]=useState(false); const mainRef=useRef(null); const appRef=useRef(null);
+ useEffect(()=>{const el=mainRef.current;const onScroll=()=>{const i=Math.round(el.scrollTop/el.clientHeight);setActive(sections[Math.min(i,sections.length-1)][0]);appRef.current?.style.setProperty('--scroll-shift',`${el.scrollTop*.035}px`)};el.addEventListener('scroll',onScroll,{passive:true});return()=>el.removeEventListener('scroll',onScroll)},[]);
+ const parallax=e=>{const x=(e.clientX/window.innerWidth-.5)*2;const y=(e.clientY/window.innerHeight-.5)*2;appRef.current?.style.setProperty('--mx',x);appRef.current?.style.setProperty('--my',y)};
+ const travel=id=>{if(id===active)return;setWarping(true);setTimeout(()=>document.getElementById(id)?.scrollIntoView({behavior:'smooth'}),160);setTimeout(()=>setWarping(false),900)};
+ return <div ref={appRef} onMouseMove={parallax} className={`App ${warping?'is-warping':''}`}>
+  <StarBackground/><div className="space-glow"/><div className="warp-flash"/>
+  <header className="topbar"><a className="wordmark" onClick={()=>travel('home')} href="#home"><b>GR</b><span>GEHRIG RANKIN<small>FULL-STACK / FRONT-END</small></span></a><div className="coordinates">33.4484° N&nbsp;&nbsp; 112.0740° W <i/> PHX</div><a className="open-signal" href="mailto:rgrankin22@gmail.com">OPEN SIGNAL <span>↗</span></a></header>
+  <nav className="nav-rail" aria-label="Section navigation"><div className="rail-line"/>{sections.map((s,i)=><button className={active===s[0]?'active':''} onClick={()=>travel(s[0])} key={s[0]}><span className="nav-count">0{i+1}</span><i><FontAwesomeIcon icon={s[2]}/></i><span className="nav-label">{s[1]}</span></button>)}</nav>
+  <main ref={mainRef}>
+   <section className="panel hero" id="home"><div className="section-code">01 / ORIGIN</div><div className="hero-copy"><p className="eyebrow"><i/> TRANSMISSION ONLINE</p><h1>Gehrig<br/><span>Rankin</span></h1><h2>FULL-STACK ENGINEER<br/>WITH A FRONT-END INSTINCT.</h2><p className="intro">I turn complicated workflows into interfaces that feel natural—combining product thinking, visual craft, and the engineering range to ship the whole experience.</p><button className="mission-button" onClick={()=>travel('work')}>VIEW SELECTED MISSIONS <FontAwesomeIcon icon={faArrowRight}/></button></div><div className="identity-card"><div className="portrait-frame"><img src={portrait} alt="Gehrig Rankin"/><span className="scanline"/></div><div className="id-meta"><span>DESIGNATION</span><b>PRODUCT ENGINEER</b><span>BASE</span><b>PHOENIX, AZ</b></div></div><div className="scroll-marker"><span>SCROLL TO TRAVEL</span><i/></div></section>
+   <section className="panel work" id="work"><div className="section-code">02 / SELECTED MISSIONS</div><div className="panel-heading"><p className="eyebrow">ARCHIVE ACCESS GRANTED</p><h2>Things I’ve<br/><span>put into orbit.</span></h2></div><div className="project-grid">{projects.map((p,i)=><article className="project-card" key={p.title}><div className="project-image"><span>MISSION 0{i+1}</span><div className="project-glyph" data-code={p.code}><i/><i/><i/><b>{p.code}</b></div></div><div className="project-info"><p>{p.type}</p><h3>{p.title}</h3><p>{p.text}</p><div className="project-tech">{p.tech}</div><div className="project-links">{p.href&&<a href={p.href} target="_blank" rel="noreferrer">OPEN LOG <FontAwesomeIcon icon={faExternalLinkAlt}/></a>}{p.live&&<a href={p.live} target="_blank" rel="noreferrer">LAUNCH <FontAwesomeIcon icon={faExternalLinkAlt}/></a>}{p.private&&<span>PRIVATE SYSTEM</span>}</div></div></article>)}</div></section>
+   <section className="panel systems" id="experience"><div className="section-code">03 / SYSTEMS + FLIGHT LOG</div><div className="systems-head"><div><p className="eyebrow">OPERATING CAPABILITIES</p><h2>Built across<br/><span>the stack.</span></h2></div><p>Years spent modernizing legacy systems, shaping product interfaces, and helping teams turn ambitious ideas into durable software.</p></div><div className="systems-body"><div className="skill-board">{['JavaScript','TypeScript','React','Angular','Node.js','D3.js','SCSS','REST APIs','MongoDB','MySQL','Git','Product UX'].map((s,i)=><span key={s}><i>{String(i+1).padStart(2,'0')}</i>{s}</span>)}</div><div className="flight-log">{jobs.map(j=><article key={j[2]}><time>{j[0]}</time><div><h3>{j[1]}</h3><h4>{j[2]}</h4><p>{j[3]}</p></div></article>)}</div></div></section>
+   <section className="panel contact" id="contact"><div className="section-code">04 / OPEN CHANNEL</div><div className="contact-copy"><p className="eyebrow"><i/> SIGNAL AVAILABLE</p><h2>Have a hard<br/>problem to <span>solve?</span></h2><p>I like thoughtful teams, useful products, and challenges with enough gravity to pull people together.</p><a href="mailto:rgrankin22@gmail.com">START A TRANSMISSION <FontAwesomeIcon icon={faArrowRight}/></a></div><div className="contact-orbit"><div className="orbit-ring"><div className="orbit-core">GR</div></div><p>RGRANKIN22@GMAIL.COM<br/>PHOENIX, ARIZONA</p><div className="social-links"><a href="https://github.com/gehrigrankin" target="_blank" rel="noreferrer"><FontAwesomeIcon icon={faGithub}/> GITHUB</a><a href="https://www.linkedin.com/in/gehrigrankin" target="_blank" rel="noreferrer"><FontAwesomeIcon icon={faLinkedinIn}/> LINKEDIN</a></div></div><footer>© {new Date().getFullYear()} GEHRIG RANKIN <span>BUILT FOR THE OPEN WEB</span></footer></section>
+  </main>
+ </div>
 }
-
 export default App;
