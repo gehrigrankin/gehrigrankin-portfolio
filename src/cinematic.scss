@@ -1,0 +1,68 @@
+.App {
+  --mx: 0;
+  --my: 0;
+  --scroll-shift: 0px;
+}
+
+.App .StarBackground {
+  inset: -3%;
+  transform: translate(
+    calc(var(--mx) * -12px),
+    calc(var(--my) * -12px + var(--scroll-shift))
+  ) scale(1.07);
+  transition: transform .2s ease-out;
+}
+
+.work .project-grid {
+  gap: .8rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.work .project-image {
+  background: radial-gradient(circle, rgba(239, 83, 80, .08), transparent 65%);
+  height: 17vh;
+}
+
+.project-glyph {
+  align-items: center;
+  border: 1px solid rgba(239, 83, 80, .22);
+  border-radius: 50%;
+  display: flex;
+  height: 88px;
+  justify-content: center;
+  position: relative;
+  width: 88px;
+}
+
+.project-glyph::before,
+.project-glyph::after {
+  border: 1px solid rgba(255, 255, 255, .07);
+  border-radius: 50%;
+  content: '';
+  position: absolute;
+}
+
+.project-glyph::before { height: 120px; width: 120px; }
+.project-glyph::after { height: 150px; width: 150px; }
+.project-glyph i { background: linear-gradient(90deg, transparent, #ef5350, transparent); height: 1px; position: absolute; width: 145px; }
+.project-glyph i:nth-child(2) { transform: rotate(60deg); }
+.project-glyph i:nth-child(3) { transform: rotate(-60deg); }
+.project-glyph b { align-items: center; background: #0e0d0f; border: 1px solid #ef5350; border-radius: 50%; color: #ef5350; display: flex; font: 500 .8rem 'DM Mono'; height: 52px; justify-content: center; position: relative; text-shadow: 0 0 14px #ef5350; width: 52px; z-index: 2; }
+
+.work .project-info { padding: 1rem 1.15rem; }
+.work .project-info h3 { font-size: 1.1rem; margin: .5rem 0; }
+.work .project-info > p { font-size: .64rem; line-height: 1.5; }
+.work .project-tech { font-size: .45rem; margin-top: .7rem; padding-top: .65rem; }
+.project-links { align-items: center; display: flex; gap: 1rem; min-height: 1.8rem; }
+.project-links span,
+.work .project-links a { color: #f38b89; display: inline-block; font: .46rem 'DM Mono'; letter-spacing: .1em; margin-top: .65rem; }
+.project-links span { color: #57545a; }
+
+@media (max-width: 900px) {
+  .work .project-grid { grid-template-columns: 1fr 1fr; }
+  .work .project-image { height: 20vh; }
+}
+
+@media (max-width: 560px) {
+  .work .project-grid { grid-template-columns: 1fr; }
+}
